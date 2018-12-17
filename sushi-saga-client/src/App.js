@@ -45,12 +45,16 @@ class App extends Component {
   }
   
   sushiClick = (sushiId, price) => {
-    if (this.state.budget - price >= 0) {
-      let newEaten = [...this.state.eaten, sushiId]
-      let newBudget = this.state.budget - price
-      this.setState({eaten: newEaten, budget: newBudget})
+    if (this.state.eaten.includes(sushiId)) {
+      alert('This sushi has already been eaten!')
     } else {
-      alert("You don't have the monies!")
+      if (this.state.budget - price >= 0) {
+        let newEaten = [...this.state.eaten, sushiId]
+        let newBudget = this.state.budget - price
+        this.setState({eaten: newEaten, budget: newBudget})
+      } else {
+        alert("You don't have the monies!")
+      }
     }
   }
 
