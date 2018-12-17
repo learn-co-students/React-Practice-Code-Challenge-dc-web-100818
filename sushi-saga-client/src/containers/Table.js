@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import Deposit from '../components/Deposit'
 
 const Table = (props) => {
 
@@ -13,6 +14,7 @@ const Table = (props) => {
       <h1 className="remaining">
         You have: ${ props.moneyLeft } remaining!
       </h1>
+      <Deposit addMoney={props.addMoney}/>
       <div className="table">
         <div className="stack">
           {

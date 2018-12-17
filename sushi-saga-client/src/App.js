@@ -28,7 +28,12 @@ class App extends Component {
   }
 
   displaySushi = (event) => {
-    this.setState({index: this.state.index + 4})
+    return this.state.index + 4 < this.state.sushiList.length ? this.setState({index: this.state.index + 4}) : this.setState({index: 0})
+  }
+
+  depositMoney = (event) => {
+    event.preventDefault()
+    this.setState({wallet: this.state.wallet + parseInt(event.currentTarget.children[1].value, 10)}, event.currentTarget.reset())
   }
 
   orderSushi = (event) => {
@@ -51,7 +56,7 @@ class App extends Component {
       <div className="app">
         <SushiContainer  sushi={
           this.state.sushiList.slice(this.state.index, this.state.index + 4)} getMoreSushi={this.displaySushi} orderSushi={this.orderSushi}/>
-        <Table moneyLeft={this.state.wallet} plates={this.state.sushiList.filter(s => s.ordered)}/>
+        <Table moneyLeft={this.state.wallet} addMoney={this.depositMoney} plates={this.state.sushiList.filter(s => s.ordered)}/>
       </div>
     );
   }
