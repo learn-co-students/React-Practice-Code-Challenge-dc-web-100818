@@ -20,8 +20,8 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <SushiContainer allSushi={this.state.allSushi} tableSushiId={this.state.tableSushiId} moreSushi={this.moreSushi} buySushi={this.buySushi} eatenSushi={this.state.eatenSushi}/>
-        <Table budget={this.state.budget} eatenSushi={this.state.eatenSushi} />
+        <SushiContainer allSushi={this.state.allSushi} tableSushiId={this.state.tableSushiId} moreSushi={this.moreSushi} buySushi={this.buySushi} eatenSushi={this.state.eatenSushi} addMoney={this.addMoney}/>
+        <Table budget={this.state.budget} eatenSushi={this.state.eatenSushi}/>
       </div>
     );
   }
@@ -51,6 +51,11 @@ class App extends Component {
       sushiId = 4
     }
     this.setState({tableSushiId: sushiId})
+  }
+
+  addMoney = () => {
+    let newBudget = this.state.budget + 50
+    this.setState({ budget: newBudget })
   }
 
 }
