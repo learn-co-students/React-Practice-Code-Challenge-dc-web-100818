@@ -44,7 +44,12 @@ class App extends Component {
   }
 
   moreSushi = () => {
-    let sushiId = this.state.tableSushiId + 4
+    let sushiId = 0
+    if (this.state.tableSushiId <= 96) {
+      sushiId = this.state.tableSushiId + 4
+    } else {
+      sushiId = 4
+    }
     this.setState({tableSushiId: sushiId})
   }
 
