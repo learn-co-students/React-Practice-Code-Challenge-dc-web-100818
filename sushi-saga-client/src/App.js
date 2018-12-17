@@ -13,14 +13,15 @@ class App extends Component {
       allSushi: [],
       budget: 100,
       tableSushiId: 4,
-      eatenSushi: []
+      eatenSushi: [],
+      currentSushi: []
     }
   }
 
   render() {
     return (
       <div className="app">
-        <SushiContainer allSushi={this.state.allSushi} tableSushiId={this.state.tableSushiId} moreSushi={this.moreSushi} buySushi={this.buySushi} eatenSushi={this.state.eatenSushi} addMoney={this.addMoney}/>
+        <SushiContainer currentSushi={this.state.currentSushi} tableSushiId={this.state.tableSushiId} moreSushi={this.moreSushi} buySushi={this.buySushi} eatenSushi={this.state.eatenSushi} addMoney={this.addMoney}/>
         <Table budget={this.state.budget} eatenSushi={this.state.eatenSushi}/>
       </div>
     );
@@ -30,7 +31,10 @@ class App extends Component {
     fetch(`${API}`)
       .then(res => res.json())
       .then(data => {
-        this.setState({ allSushi: data})
+        this.setState({
+          allSushi: data,
+          currentSushi: data.slice(0, 4)
+        })
       })
   }
 
@@ -43,6 +47,7 @@ class App extends Component {
     }
   }
 
+
   moreSushi = () => {
     let sushiId = 0
     if (this.state.tableSushiId <= 96) {
@@ -50,7 +55,11 @@ class App extends Component {
     } else {
       sushiId = 4
     }
-    this.setState({tableSushiId: sushiId})
+    let sushiArr = this.state.allSushi.slice(sushiId - 4, sushiId)
+    this.setState({
+      tableSushiId: sushiId,
+      currentSushi: sushiArr
+    })
   }
 
   addMoney = () => {
