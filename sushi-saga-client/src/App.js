@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
       sushis: [],
       startIndex: 0,
-      eaten: [],
+      eaten: [], //change this to include full sushi objects, instead of just sushiIds
       budget: 100
     }
   }
@@ -43,7 +43,8 @@ class App extends Component {
     }
     document.getElementById('addMoneyForm').reset()
   }
-  
+
+  // change this to include full sushi object, instead oj just sushiId as full object may be more useful later and is a "richer" dataset
   sushiClick = (sushiId, price) => {
     if (this.state.eaten.includes(sushiId)) {
       alert('This sushi has already been eaten!')
